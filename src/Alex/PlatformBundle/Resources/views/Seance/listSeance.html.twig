@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-12">
+		<a href="{{ path('alex_platform_seance_add') }}" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Nouvelle séance</a>
+	</div>
+</div>
+<table class="table table-bordered table-striped table-condensed">
+	<thead>
+		<tr>
+			<th>Seance</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for seance in list %}
+			<tr>
+				<td>{{ seance.date|date('d/m/Y') }}</td>
+				<td>{{ seance.comment }}</td>
+				<td>
+					<a href="{{ path('alex_platform_view', {'id': seance.id}) }}" class="btn btn-info delete-row-default"><i class="fa fa-eye" aria-hidden="true"></i> Voir</a>
+					<a href="{{ path('alex_platform_exercice_delete', {'id': seance.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

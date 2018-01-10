@@ -1,0 +1,35 @@
+alex_platform_homepage:
+    path:     /
+    defaults: { _controller: AlexPlatformBundle:Seance:index }
+
+alex_platform_seance_add:
+    path:     /addSeance
+    defaults: { _controller: AlexPlatformBundle:Seance:addSeance}
+
+alex_platform_seance_list:
+    path:     /listSeance
+    defaults: { _controller: AlexPlatformBundle:Seance:viewListSeance }
+
+alex_platform_seance_edit:
+    path:   /editSeance/{id}
+    defaults:  
+        _controller: AlexPlatformBundle:Seance:edit 
+    requirements:
+        id: \d+
+
+
+alex_platform_view:
+    path:     /view/{id}
+    defaults: { _controller: AlexPlatformBundle:Seance:view}
+
+alex_platform_exercice_add:
+    path:     /exercice/add
+    defaults: { _controller: AlexPlatformBundle:Exercice:add }
+
+alex_platform_exercice_list:
+    path:     /exercice/list
+    defaults: { _controller: AlexPlatformBundle:Exercice:viewList }
+
+alex_platform_exercice_delete:
+    path:     /exercice/delete/{id}
+    defaults: { _controller: AlexPlatformBundle:Exercice:delete }

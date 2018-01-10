@@ -1,0 +1,111 @@
+<?php
+
+namespace Alex\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Seance_Exercice_Serie
+ *
+ * @ORM\Table(name="seance__exercice__serie")
+ * @ORM\Entity(repositoryClass="Alex\PlatformBundle\Repository\Seance_Exercice_SerieRepository")
+ */
+class Seance_Exercice_Serie
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="rep", type="integer")
+     */
+    private $rep;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="charge", type="integer")
+     */
+    private $charge;
+
+    /**
+     * 
+     * @ORM\ManyToOne(targetEntity="Alex\PlatformBundle\Entity\Seance")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $seance;
+
+    /**
+     * 
+     * @ORM\ManyToOne(targetEntity="Alex\PlatformBundle\Entity\Exercice")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $exercice;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set rep
+     *
+     * @param integer $rep
+     *
+     * @return Seance_Exercice_Serie
+     */
+    public function setRep($rep)
+    {
+        $this->rep = $rep;
+
+        return $this;
+    }
+
+    /**
+     * Get rep
+     *
+     * @return int
+     */
+    public function getRep()
+    {
+        return $this->rep;
+    }
+
+    /**
+     * Set charge
+     *
+     * @param integer $charge
+     *
+     * @return Seance_Exercice_Serie
+     */
+    public function setCharge($charge)
+    {
+        $this->charge = $charge;
+
+        return $this;
+    }
+
+    /**
+     * Get charge
+     *
+     * @return int
+     */
+    public function getCharge()
+    {
+        return $this->charge;
+    }
+}
+

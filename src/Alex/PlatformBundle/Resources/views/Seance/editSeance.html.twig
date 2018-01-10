@@ -1,0 +1,95 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="row">
+	<div class="col-sm-5">
+		<select id='ex' name="exercice" class="form-control exo">
+			{% for ex in listEx %}
+				<option value="{{ ex.id }}">{{ ex.libelle }}</option>
+			{% endfor %}
+		</select>		
+	</div>
+	<div class="col-sm-2">
+		<button  class="btn btn-success delete-row-default" id="clone"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button>
+	</div>
+</div>
+
+<div id='exercices'>
+	<div class="well" id="blocExo" hidden="true">
+		<div class="row">
+			<div class="col-sm-3">
+				<h3 id="name1"></h3>
+			</div>
+      <div id="serie">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        <div class="col-sm-4">
+            {{ form_row(form.rep) }}
+        </div>
+        <div class="col-sm-4">  
+            {{ form_row(form.charge) }}
+        </div>
+      </div>
+			
+			<div class="col-sm-1">
+					{{ form_row(form.enregistrer) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-2">
+		<a href="{{ path('alex_platform_seance_edit',{'id': seance.id}) }}" class="btn btn-success disabled" id="save" visible="false"><i class="fa fa-floppy-o" aria-hidden="true"></i> Enregistrer</a>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  	var index=1;
+  	var idEx = $("#ex option:selected").val();
+  	var nameEx = $("#ex option:selected").text();
+
+
+  	$("#ex").change( function() 
+  	{
+  		idEx = $("#ex option:selected").val();
+  		nameEx = $("#ex option:selected").text();
+  		//$("#alex_platformbundle_seance_exercice_serie_exercice").val(idEx) ;
+  		$("#name"+index).html(nameEx) ;
+  	}
+  	)
+
+
+
+  	$("#clone").click(function(e){
+  		var copie = $('#blocExo').clone();
+  		console.log($("#blocExo").is(":visible") );
+  		if(!$("#blocExo").is(":visible")){
+  			$("#blocExo").removeAttr('hidden');
+  			$("#blocExo").find("#name"+index).html(nameEx);
+  			$("#blocExo").find("#alex_platformbundle_seance_exercice_serie_exercice").val(idEx);
+  			$("#save").removeClass('disabled');
+  			index++;
+
+  		}else{
+  			copie.find('#alex_platformbundle_seance_exercice_serie_rep').val('');
+  			var j = copie.find("#name1").attr("id");
+  			copie.find("#name1").attr("id", "name"+index);
+  			copie.find("#name"+index).html(nameEx);
+  			copie.find("#alex_platformbundle_seance_exercice_serie_exercice").val(idEx);
+  			copie.appendTo('#exercices');
+  			
+  			index++;
+  		}
+  		
+  	})
+
+
+  });
+</script>
+
+
+{% endblock %}
+

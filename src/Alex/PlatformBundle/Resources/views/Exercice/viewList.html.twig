@@ -1,0 +1,22 @@
+{# src/Alex/PlatformBundle/Resources/views/Exercice/add.html.twig #}
+
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<table class="table table-bordered table-striped table-condensed">
+	<thead>
+		<tr>
+			<th>Exercice</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for ex in list %}
+			<tr>
+				<td>{{ ex.libelle }}</td>
+				<td><a href="{{ path('alex_platform_exercice_delete', {'id': ex.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
